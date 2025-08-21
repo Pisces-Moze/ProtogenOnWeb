@@ -1,0 +1,76 @@
+<!--
+ _____ ______       ________      ________      _______      
+|\   _ \  _   \    |\   __  \    |\_____  \    |\  ___ \     
+\ \  \\\__\ \  \   \ \  \|\  \    \|___/  /|   \ \   __/|    
+ \ \  \\|__| \  \   \ \  \\\  \       /  / /    \ \  \_|/__  
+  \ \  \    \ \  \   \ \  \\\  \     /  /_/__    \ \  \_|\ \ 
+   \ \__\    \ \__\   \ \_______\   |\________\   \ \_______\
+    \|__|     \|__|    \|_______|    \|_______|    \|_______|
+                                                             
+                                                             
+                                                             
+-->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Protogen 主控面板</title>
+  <link rel="stylesheet" href="/public/css/style.css" />
+  <script>
+  async function updateTitle() {
+    try {
+      const response = await fetch('/api/whoami');
+      const data = await response.json();
+      if (data.username) {
+        document.title = `${data.username} の Protogen 主控面板`;
+      }
+    } catch (error) {
+      console.error('获取用户名失败:', error);
+    }
+  }
+  window.addEventListener('DOMContentLoaded', updateTitle);
+  </script>
+</head>
+<body>
+  <div class="topbar">
+    <div>
+      <a href="/left-face">Left</a> · <a href="/right-face">Right</a> · <a href="/">Home</a>
+    </div>
+    <div class="user" id="who"></div>
+  </div>
+
+  <div class="panel">
+    <h2>上传 / 管理表情（0~9）</h2>
+    <p class="muted">要求：文件名必须为 <code>0.jpg/png</code> ~ <code>n.jpg/png</code>；可多选上传。多图将以 5 FPS 循环播放（0→n）。</p>
+    <div id="grid" class="grid"></div>
+  </div>
+
+  <script type="module" src="/public/js/control.js"></script>
+  <footer>
+    <div class="footer-content">
+      <p>版权所有 © 2023-2025 <span class="highlight">Moze Protogen Terminal</span></p>
+      <p>
+        <a href="https://blog.pmoze.top" target="_blank">By Moze</a> • 
+        <a href="/" id="userLink">返回主页</a>
+      </p>
+      <p id="userFooter" class="user-footer"></p>
+    </div>
+  </footer>
+  <script>
+    async function updateFooter() {
+      try {
+        const response = await fetch('/api/whoami');
+        const data = await response.json();
+        if (data.username) {
+          const userFooter = document.getElementById('userFooter');
+          userFooter.textContent = `${data.username} 的专属PTG主控面板`;
+        }
+      } catch (error) {
+        console.error('获取用户名失败:', error);
+      }
+    }
+    window.addEventListener('DOMContentLoaded', updateFooter);
+  </script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Left Face</title>
+  <link rel="stylesheet" href="/public/css/style.css" />
+</head>
+<body>
+  <div class="face-stage">
+    <img id="face" alt="left-face" />
+    <div class="mobile-hint">← 左右滑动切换表情 →</div>
+  </div>
+  <div id="login" class="terminal-overlay" hidden>
+    <div class="terminal">
+      <h1>protogen://login</h1>
+      <pre id="motd">WELCOME – 输入用户名以初始化你的PTG空间…</pre>
+      <div class="row">
+        <input id="username" placeholder="用户名（字母、数字、-_）" />
+        <button id="btnLogin">登录</button>
+      </div>
+      <div class="muted">登录后将创建您的独立空间w</div>
+    </div>
+  </div>
+
+  <script>window.__IS_RIGHT__ = false;</script>
+  <script type="module" src="/public/js/face.js"></script>
+</body>
+</html>

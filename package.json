@@ -1,0 +1,19 @@
+{
+  "dependencies": {
+    "cookie-parser": "^1.4.7",
+    "express": "^5.1.0",
+    "mime": "^4.0.7",
+    "multer": "^2.0.2",
+    "socket.io": "^4.8.1"
+  },
+  "name": "project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "protogen.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
